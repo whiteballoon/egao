@@ -163,7 +163,7 @@ Component({
     saveImgToLocal() {
       const that = this;
       setTimeout(() => {
-        wx.canvasToTempFilePath({
+        qq.canvasToTempFilePath({
           canvasId: 'k-canvas',
           success: function (res) {
             that.getImageInfo(res.tempFilePath);

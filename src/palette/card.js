@@ -1,5 +1,3 @@
-
-
 // 名片分享样式
 export default class LastMayday {
   cardInfo = {}
@@ -48,7 +46,8 @@ export default class LastMayday {
         },
         {
           "type": "image",
-          "url": "https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/0F/08/ChMkJlauzXWIDrXBAAdCg2xP7oYAAH9FQOpVAIAB0Kb342.jpg",
+          // "url": "https://i.loli.net/2020/03/01/wPoOQuJRFT93ykI.png",
+          "url": "https://jiaqunzhenggu.h5.wucainiao.com/1.png",
           "css": {
             "width": "120.50000000000001rpx",
             "height": "120.50000000000001rpx",
@@ -64,21 +63,21 @@ export default class LastMayday {
         },
         {
           "type": "text",
-          "text": "该二维码7天内（04月1日前）有效，重新进入将更新",
+          "text": '该二维码7天内（' + this.cardInfo.month + '月' + this.cardInfo.day + '日前）有效，重新进入将更新',
           "css": {
             "color": "#aaa",
             "background": "rgba(0,0,0,0)",
-            "width": "650rpx",
+            "width": "600rpx",
             "height": "22.88rpx",
-            "top": "828rpx",
-            "left": "85rpx",
+            "top": "780rpx",
+            "left": "125rpx",
             "rotate": "0",
             "borderRadius": "",
             "borderWidth": "",
             "borderColor": "#000000",
             "shadow": "",
             "padding": "0rpx",
-            "fontSize": "24rpx",
+            "fontSize": "20rpx",
             "fontWeight": "normal",
             "maxLines": "2",
             "lineHeight": "23.088000000000005rpx",
@@ -90,14 +89,14 @@ export default class LastMayday {
         },
         {
           "type": "qrcode",
-          "content": "哈哈哈",
+          "content": "https://jiaqunzhenggu.h5.wucainiao.com",
           "css": {
             "color": "#000000",
             "background": "#ffffff",
-            "width": "600.75rpx",
-            "height": "600.75rpx",
+            "width": "550.75rpx",
+            "height": "550.75rpx",
             "top": "177rpx",
-            "left": "75.75rpx",
+            "left": "100.75rpx",
             "rotate": "0",
             "borderRadius": ""
           }

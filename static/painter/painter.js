@@ -70,7 +70,7 @@ Component({
 
       if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
         try {
-          getApp().systemInfo = wx.getSystemInfoSync();
+          getApp().systemInfo = qq.getSystemInfoSync();
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;
           that.triggerEvent('imgErr', { error: error });
@@ -91,7 +91,7 @@ Component({
         this.setData({
           painterStyle: `width:${width};height:${height};`,
         });
-        const ctx = wx.createCanvasContext('k-canvas', this);
+        const ctx = qq.createCanvasContext('k-canvas', this);
         const pen = new Pen(ctx, palette);
         pen.paint(() => {
           this.saveImgToLocal();
@@ -126,7 +126,7 @@ Component({
               /* eslint-disable no-loop-func */
               downloader.download(view.url).then((path) => {
                 view.url = path;
-                wx.getImageInfo({
+                qq.getImageInfo({
                   src: view.url,
                   success: (res) => {
                     // 获得一下图片信息，供后续裁减使用
@@ -178,7 +178,7 @@ Component({
 
     getImageInfo(filePath) {
       const that = this;
-      wx.getImageInfo({
+      qq.getImageInfo({
         src: filePath,
         success: (infoRes) => {
           if (that.paintCount > MAX_PAINT_COUNT) {

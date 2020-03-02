@@ -24,7 +24,8 @@ export default {
       shareImg: "",
       customStyle: customStyle,
       template: "",
-      shareInfo: {}
+      shareInfo: {},
+      　　　　nullAds : ''
     };
   },
   methods: {
@@ -36,10 +37,10 @@ export default {
     },
     savePoster() {
       if (this.shareImg) {
-        wx.saveImageToPhotosAlbum({
+        qq.saveImageToPhotosAlbum({
           filePath: this.shareImg,
           success: result => {
-            wx.showToast({
+            qq.showToast({
               title: "海报已保存，快去分享给好友吧。",
               icon: "none"
             });
@@ -51,15 +52,19 @@ export default {
   mounted() {
     const options = this.$root.$mp.query;
     this.shareInfo = JSON.parse(options.shareInfo);
-    console.log('shareInfo',this.shareInfo)
     const card = new Card();
     this.template = card.do(this.shareInfo);
   },
-  onShareAppMessage: function(res) {
+  onShareAppMessage: function() {
     return {
       title: "邀请你加入群聊" + this.shareInfo.qunName + ",进入可查看详情",
-      path: "/page/index/main"
+      imageUrl: 'https://jiaqunzhenggu.h5.wucainiao.com/1.png'
     };
+  },
+  onUnload() {
+    qq.navigateTo({
+      url: '/pages/index/main'
+    })
   }
 };
 </script>

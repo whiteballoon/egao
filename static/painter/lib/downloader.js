@@ -20,7 +20,7 @@ export default class Dowloader {
     if (getApp().PAINTER_MAX_LRU_SPACE) {
       MAX_SPACE_IN_B = getApp().PAINTER_MAX_LRU_SPACE;
     }
-    wx.getStorage({
+    qq.getStorage({
       key: SAVED_FILES_KEY,
       success: function (res) {
         if (res.data) {
@@ -44,7 +44,7 @@ export default class Dowloader {
 
       if (file) {
         // 检查文件是否正常，不正常需要重新下载
-        wx.getSavedFileInfo({
+        qq.getSavedFileInfo({
           filePath: file[KEY_PATH],
           success: (res) => {
             resolve(file[KEY_PATH]);
@@ -71,7 +71,7 @@ export default class Dowloader {
 
 function downloadFile(url) {
   return new Promise((resolve, reject) => {
-    wx.downloadFile({
+    qq.downloadFile({
       url: url,
       success: function (res) {
         if (res.statusCode !== 200) {
@@ -80,7 +80,7 @@ function downloadFile(url) {
           return;
         }
         const { tempFilePath } = res;
-        wx.getFileInfo({
+        qq.getFileInfo({
           filePath: tempFilePath,
           success: (tmpRes) => {
             const newFileSize = tmpRes.size;
@@ -109,7 +109,7 @@ function downloadFile(url) {
 
 function saveFile(key, newFileSize, tempFilePath) {
   return new Promise((resolve, reject) => {
-    wx.saveFile({
+    qq.saveFile({
       tempFilePath: tempFilePath,
       success: (fileRes) => {
         const totalSize = savedFiles[KEY_TOTAL_SIZE] ? savedFiles[KEY_TOTAL_SIZE] : 0;
@@ -118,7 +118,7 @@ function saveFile(key, newFileSize, tempFilePath) {
         savedFiles[key][KEY_TIME] = new Date().getTime();
         savedFiles[key][KEY_SIZE] = newFileSize;
         savedFiles['totalSize'] = newFileSize + totalSize;
-        wx.setStorage({
+        qq.setStorage({
           key: SAVED_FILES_KEY,
           data: savedFiles,
         });
@@ -139,10 +139,10 @@ function saveFile(key, newFileSize, tempFilePath) {
  * 清空所有下载相关内容
  */
 function reset() {
-  wx.removeStorage({
+  qq.removeStorage({
     key: SAVED_FILES_KEY,
     success: () => {
-      wx.getSavedFileList({
+      qq.getSavedFileList({
         success: (listRes) => {
           removeFiles(listRes.fileList);
         },
@@ -182,7 +182,7 @@ function doLru(size) {
 
     savedFiles['totalSize'] = totalSize;
 
-    wx.setStorage({
+    qq.setStorage({
       key: SAVED_FILES_KEY,
       data: savedFiles,
       success: () => {
@@ -206,7 +206,7 @@ function removeFiles(pathsShouldDelete) {
     if (typeof pathDel === 'object') {
       delPath = pathDel.filePath;
     }
-    wx.removeSavedFile({
+    qq.removeSavedFile({
       filePath: delPath,
       fail: (error) => {
         console.error(`removeSavedFile ${pathDel} failed, ${JSON.stringify(error)}`);
@@ -220,7 +220,7 @@ function getFile(key) {
     return;
   }
   savedFiles[key]['time'] = new Date().getTime();
-  wx.setStorage({
+  qq.setStorage({
     key: SAVED_FILES_KEY,
     data: savedFiles,
   });

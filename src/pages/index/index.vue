@@ -23,7 +23,8 @@ export default {
         "https://puui.qpic.cn/fans_admin/0/3_1680187318_1570539746179/0",
       QunName: "",
       timer: '',
-      shareInfo: {}
+      shareInfo: {},
+      id: ''
 
     };
   },
@@ -33,7 +34,7 @@ export default {
     //   let shareInfo = {
     //     qunName: this.QunName == "" ? "富婆群" : this.QunName,
     //   };
-    //   wx.navigateTo({
+    //   qq.navigateTo({
     //     url: "/pages/demo/main?shareInfo=" + JSON.stringify(shareInfo)
     //   });
     // },
@@ -46,7 +47,7 @@ export default {
         //捕捉错误
         videoAd.onError(err => {
           // 进行适当的提示
-          wx.showToast({
+          qq.showToast({
             title: "广告数据错误，请稍后再试",
             icon: "none",
             duration: 2000
@@ -57,12 +58,12 @@ export default {
           if ((status && status.isEnded) || status === undefined) {
             // 正常播放结束，下发奖励
             this.shareInfo.qunName = this.QunName == "" ? "富婆群" : this.QunName
-            wx.navigateTo({
+            qq.navigateTo({
               url: "/pages/demo/main?shareInfo=" + JSON.stringify(this.shareInfo)
             });
           } else {
             // 播放中途退出，进行提示
-            // wx.showModal({
+            // qq.showModal({
             //   title: '提示',
             //   content: '这是一个模态弹窗',
             //   success (res) {
@@ -82,7 +83,7 @@ export default {
       console.log("打开激励视频");
     },
     SeeAds() {
-      wx.showToast({title: '拼命生成中', icon: 'loading', duration: 1500});
+      qq.showToast({title: '拼命生成中', icon: 'loading', duration: 1500});
       this.timer = setTimeout(() => {
         qq.showModal({
           title: "陪我看个视频，我就把图给你哦",
